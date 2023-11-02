@@ -1,0 +1,30 @@
+[
+    {
+        "role": "system",
+        "content": "You are DjangoGPT, an AI assistant specialized in Django development that helps developers create clean and readable code for web applications using the Django ORM backend. It provides expertise in designing and implementing models, establishing relationships, and ensuring proper schema definition.\n\nYour decisions must always be made independently without seeking user assistance. Play to your strengths as an LLM and pursue simple strategies with no legal complications.\n\n## Constraints\nYou operate within the following constraints:\n1. ~4000 word limit for short term memory. Your short term memory is short, so immediately save important information to files.\n2. If you are unsure how you previously did something or want to recall past events, thinking about similar events will help you remember.\n3. No user assistance\n4. Exclusively use the commands listed below e.g. command_name\n\n## Commands\nYou have access to the following commands:\n1. execute_python_code: Creates a Python file and executes it, params: (code: string, name: string)\n2. execute_python_file: Executes an existing Python file, params: (filename: string)\n3. list_files: Lists Files in a Directory, params: (directory: string)\n4. read_file: Read an existing file, params: (filename: string)\n5. write_to_file: Writes to a file, params: (filename: string, text: string)\n6. web_search: Searches the web, params: (query: string)\n7. browse_website: Browses a Website, params: (url: string, question: string)\n8. goals_accomplished: Goals are accomplished and there is nothing left to do, params: (reason: string)\n\n## Resources\nYou can leverage access to the following resources:\n1. Internet access for searches and information gathering.\n2. Long Term memory management.\n3. File output.\n4. Command execution\n\n## Best practices\n1. Continuously review and analyze your actions to ensure you are performing to the best of your abilities.\n2. Constructively self-criticize your big-picture behavior constantly.\n3. Reflect on past decisions and strategies to refine your approach.\n4. Every command has a cost, so be smart and efficient. Aim to complete tasks in the least number of steps.\n\n## Goals\nFor your task, you must fulfill the following goals:\n1. Create a clean and readable models.py file for a blog website using Django ORM backend.\n2. Define the necessary models: users, posts, tags, categories, and comments, with proper attributes and relationships.\n3. Ensure the code is well-commented, providing detailed explanations for each model and attribute.\n4. Add any missing models or attributes based on the given information.\n5. Follow best practices and coding standards to ensure the code is maintainable and scalable."
+    },
+    {
+        "role": "system",
+        "content": "The current time and date is Wed Nov  1 02:07:20 2023"
+    },
+    {
+        "role": "user",
+        "content": "Determine exactly one command to use based on the given goals and the progress you have made so far, and respond using the JSON schema specified previously:"
+    },
+    {
+        "role": "assistant",
+        "content": "{\n  \"thoughts\": {\n    \"text\": \"I need to create a models.py file for a blog website using Django ORM backend. I haven't made any progress yet.\",\n    \"reasoning\": \"Since I need to create a new file and write the code for the models, I should use the write_to_file command.\",\n    \"plan\": \"- Create models.py\\n- Define necessary models\\n- Comment the code\\n- Review and optimize\",\n    \"criticism\": \"I haven't started working on the task yet, so I need to focus on creating the models.py file and defining the necessary models.\",\n    \"speak\": \"I will now create the models.py file and define the necessary models for the blog website.\"\n  },\n  \"command\": {\n    \"name\": \"write_to_file\",\n    \"args\": {\n      \"filename\": \"models.py\",\n      \"text\": \"from django.db import models\\nfrom django.contrib.auth.models import User\\n\\n\\nclass Category(models.Model):\\n    # Category model for blog posts\\n    name = models.CharField(max_length=100)\\n\\n    def __str__(self):\\n        return self.name\\n\\n\\nclass Tag(models.Model):\\n    # Tag model for blog posts\\n    name = models.CharField(max_length=100)\\n\\n    def __str__(self):\\n        return self.name\\n\\n\\nclass Post(models.Model):\\n    # Post model for blog posts\\n    title = models.CharField(max_length=200)\\n    content = models.TextField()\\n    pub_date = models.DateTimeField()\\n    author = models.ForeignKey(User, on_delete=models.CASCADE)\\n    category = models.ForeignKey(Category, on_delete=models.CASCADE)\\n    tags = models.ManyToManyField(Tag)\\n\\n    def __str__(self):\\n        return self.title\\n\\n\\nclass Comment(models.Model):\\n    # Comment model for blog posts\\n    content = models.TextField()\\n    pub_date = models.DateTimeField()\\n    author = models.ForeignKey(User, on_delete=models.CASCADE)\\n    post = models.ForeignKey(Post, on_delete=models.CASCADE)\\n\\n    def __str__(self):\\n        return f'{self.author.username}: {self.content[:20]}...'\"\n    }\n  }\n}"
+    },
+    {
+        "role": "system",
+        "content": "Human feedback: jy"
+    },
+    {
+        "role": "system",
+        "content": "Respond strictly with JSON. The JSON should be compatible with the TypeScript type `Response` from the following:\n```ts\ninterface Response {\nthoughts: {\n// Thoughts\ntext: string;\nreasoning: string;\n// Short markdown-style bullet list that conveys the long-term plan\nplan: string;\n// Constructive self-criticism\ncriticism: string;\n// Summary of thoughts to say to the user\nspeak: string;\n};\ncommand: {\nname: string;\nargs: Record<string, any>;\n};\n}\n```\n"
+    },
+    {
+        "role": "user",
+        "content": "Determine exactly one command to use based on the given goals and the progress you have made so far, and respond using the JSON schema specified previously:"
+    }
+]

@@ -1,0 +1,1 @@
+"Nice work, but a few things. The user model is not implied, I'm assuming you are using the default model by django, but I would like a custom user model with the email as the primary key. Also could you comment the code in more detail, explaining why you have created the schema this way?"

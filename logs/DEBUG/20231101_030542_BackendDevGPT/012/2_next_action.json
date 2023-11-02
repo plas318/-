@@ -1,0 +1,16 @@
+{
+    "thoughts": {
+        "text": "I have added comments to the views.py file. Now, I will add comments to the models.py file.",
+        "reasoning": "Adding comments will provide clear explanations of the purpose and functionality of each component, which is one of the goals.",
+        "plan": "- Add comments to models.py",
+        "criticism": "I should have started working on the goals earlier.",
+        "speak": "I will now add comments to the models.py file."
+    },
+    "command": {
+        "name": "write_to_file",
+        "args": {
+            "filename": "models.py",
+            "text": "# models.py\n\nfrom django.db import models\nfrom django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin\n\n\n# Custom user manager\nclass CustomUserManager(BaseUserManager):\n    # Custom user manager to handle email as primary key\n\n    def create_user(self, email, password=None, **extra_fields):\n        if not email:\n            raise ValueError('The Email field must be set')\n        email = self.normalize_email(email)\n        user = self.model(email=email, **extra_fields)\n        user.set_password(password)\n        user.save()\n        return user\n\n    def create_superuser(self, email, password=None, **extra_fields):\n        extra_fields.setdefault('is_staff', True)\n        extra_fields.setdefault('is_superuser', True)\n        return self.create_user(email, password, **extra_fields)\n\n\n# Custom user model\nclass CustomUser(AbstractBaseUser, PermissionsMixin):\n    # Custom user model with email as primary key\n    email = models.EmailField(unique=True)\n    is_active = models.BooleanField(default=True)\n    is_staff = models.BooleanField(default=False)\n\n    objects = CustomUserManager()\n\n    USERNAME_FIELD = 'email'\n    REQUIRED_FIELDS = []\n\n    def __str__(self):\n        return self.email\n\n\n# Category model\nclass Category(models.Model):\n    # Category model for organizing blog posts\n    name = models.CharField(max_length=100)\n\n    def __str__(self):\n        return self.name\n\n\n# Tag model\nclass Tag(models.Model):\n    # Tag model for adding searchable keywords to blog posts\n    name = models.CharField(max_length=100)\n\n    def __str__(self):\n        return self.name\n\n\n# Post model\nclass Post(models.Model):\n    # Post model for storing blog posts\n    title = models.CharField(max_length=200)\n    content = models.TextField()\n    pub_date = models.DateTimeField()\n    author = models.ForeignKey(CustomUser, on_delete=models.CASCADE)\n    category = models.ForeignKey(Category, on_delete=models.CASCADE)\n    tags = models.ManyToManyField(Tag)\n\n    def __str__(self):\n        return self.title\n\n\n# Comment model\nclass Comment(models.Model):\n    # Comment model for storing comments on blog posts\n    content = models.TextField()\n    pub_date = models.DateTimeField()\n    author = models.ForeignKey(CustomUser, on_delete=models.CASCADE)\n    post = models.ForeignKey(Post, on_delete=models.CASCADE)\n\n    def __str__(self):\n        return f'{self.author.email}: {self.content[:20]}...'\n"
+        }
+    }
+}

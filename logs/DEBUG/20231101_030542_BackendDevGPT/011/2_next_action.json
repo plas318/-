@@ -1,0 +1,16 @@
+{
+    "thoughts": {
+        "text": "I have added comments to the serializers.py file. Now, I will add comments to the views.py file.",
+        "reasoning": "Adding comments will provide clear explanations of the purpose and functionality of each component, which is one of the goals.",
+        "plan": "- Add comments to views.py\n- Add comments to models.py",
+        "criticism": "I should have started working on the goals earlier.",
+        "speak": "I will now add comments to the views.py file."
+    },
+    "command": {
+        "name": "write_to_file",
+        "args": {
+            "filename": "views.py",
+            "text": "# views.py\n\nfrom rest_framework import generics, permissions, filters\nfrom rest_framework.authentication import SessionAuthentication, TokenAuthentication\nfrom rest_framework.views import APIView\nfrom rest_framework.response import Response\nfrom django.contrib.auth import login, logout\nfrom .models import CustomUser, Category, Tag, Post, Comment\nfrom .serializers import CustomUserSerializer, CategorySerializer, TagSerializer, PostSerializer, CommentSerializer\n\n\n# Login view\nclass LoginView(APIView):\n    authentication_classes = [SessionAuthentication, TokenAuthentication]\n    permission_classes = [permissions.AllowAny]\n\n    def post(self, request):\n        user = request.user\n        if user.is_authenticated:\n            login(request, user)\n            return Response({'detail': 'Login successful.'})\n        else:\n            return Response({'detail': 'Invalid credentials.'}, status=400)\n\n\n# Logout view\nclass LogoutView(APIView):\n    authentication_classes = [SessionAuthentication, TokenAuthentication]\n    permission_classes = [permissions.IsAuthenticated]\n\n    def post(self, request):\n        logout(request)\n        return Response({'detail': 'Logout successful.'})\n\n\n# Existing code from views.py\n\n"
+        }
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "thoughts": {
+        "text": "I have created the models.py file with the necessary models for the blog website.",
+        "reasoning": "I need to review the code to ensure it is clean, readable, and follows best practices.",
+        "plan": "- Review the code\n- Optimize if necessary\n- Complete the task",
+        "criticism": "I have created the models.py file, but I need to review it to ensure it meets the goals.",
+        "speak": "I will now review the models.py file to ensure it is clean, readable, and follows best practices."
+    },
+    "command": {
+        "name": "read_file",
+        "args": {
+            "filename": "models.py"
+        }
+    }
+}

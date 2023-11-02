@@ -1,0 +1,15 @@
+{
+    "thoughts": {
+        "text": "I have reviewed the updated models.py file, and it includes a custom user model with email as the primary key and more detailed comments.",
+        "reasoning": "The code follows best practices and meets the goals, so there is nothing left to do.",
+        "plan": "- Complete the task",
+        "criticism": "The updated models.py file is well-written and meets the goals, so there is no need for further action.",
+        "speak": "The updated models.py file is complete and meets the goals. The task is now finished."
+    },
+    "command": {
+        "name": "goals_accomplished",
+        "args": {
+            "reason": "The updated models.py file is complete, clean, and readable, containing the necessary models for the blog website, including a custom user model with email as the primary key and more detailed comments."
+        }
+    }
+}

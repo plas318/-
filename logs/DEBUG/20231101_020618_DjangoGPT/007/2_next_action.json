@@ -1,0 +1,15 @@
+{
+    "thoughts": {
+        "text": "I have modified the models.py file to include a custom user model with email as the primary key and added more detailed comments.",
+        "reasoning": "I need to review the updated code to ensure it is clean, readable, and follows best practices.",
+        "plan": "- Review the updated code\n- Optimize if necessary\n- Complete the task",
+        "criticism": "I have updated the models.py file, but I need to review it to ensure it meets the goals.",
+        "speak": "I will now review the updated models.py file to ensure it is clean, readable, and follows best practices."
+    },
+    "command": {
+        "name": "read_file",
+        "args": {
+            "filename": "models.py"
+        }
+    }
+}
